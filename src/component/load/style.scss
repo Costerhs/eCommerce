@@ -1,0 +1,22 @@
+.load {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.475);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
+  .load__text {
+    color: white;
+    font-size: 80px;
+  }
+
+  @media (max-width:768px) {
+    .load__text {
+      font-size: 30px;
+    }
+  }
