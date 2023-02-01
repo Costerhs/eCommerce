@@ -66,3 +66,9 @@ export const userApi = {
             })
     },
 }
+
+export const productApi = {
+    getAllProduct() {
+        return instance.get('products/product')
+    }
+}
