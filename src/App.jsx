@@ -23,7 +23,7 @@ const App = () => {
       {!location && <Header />}
       <Routes>
         <Route path='auth' element={<Auth />} />
-        <Route path='/' element={<MainPage />} />
+        <Route path={'/'} element={<MainPage />} />
       </Routes>
       {!location && <Footer />}
     </div>

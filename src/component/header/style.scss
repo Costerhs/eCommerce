@@ -22,40 +22,7 @@
         flex-direction: row;
         justify-content: space-between;
         height: 64px;
-        .head__nav {
-            display: flex;
-            align-items: center;
-            height: 100%;
-            gap: 10px;
-            h2 {
-                color: #00C65E;
-                font-size: 20px;
-            }
-            .head__links {
-                display: flex;
-                height: 100%;
-                .head__link {
-                    cursor: pointer;
-                    font-size: 14px;
-                    height: 100%;
-                    display: flex;
-                    align-items: center;
-                    z-index: 1;
-                    transition: background 0.4s;
-                    padding: 0px 10px;
-                    &:hover {
-                        background: #b3eecf;
-                        color: black;
-                        border-bottom: 2px solid  #00C65E;
-                    }
-                }
-            }
-            .head__link-active {
-                background: #b3eecf;
-                color: black;
-                border-bottom: 2px solid  #00C65E;
-            }
-        }
+        
         .head__user {
             display: flex;
             align-items: center;
@@ -67,7 +34,12 @@
             .head__icon {
                 color: #00C65E;
                 cursor: pointer;
-                font-size: 20px;
+                font-size: 22px;
+            }
+            .head__icon-ava {
+                color: #00C65E;
+                cursor: pointer;
+                font-size: 30px;
             }
             img {
                 width: 30px;
