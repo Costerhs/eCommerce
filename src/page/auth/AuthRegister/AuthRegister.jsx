@@ -37,7 +37,7 @@ const AuthRegister = () => {
             <form className='authreg__form' onSubmit={handleSubmit(onSubmit)}>
                 {formsData.map((el, ind) => {
                     if (isSignIn && (el.name === 'avatarka' || el.name === 'phone_number' || el.name === 'birth_date' || el.name === 'email' || el.name === 'about')) return null;
-                    return <div className="authreg__item">
+                    return <div key={ind} className="authreg__item">
                         <label htmlFor={el.name} className="authreg__label">{el.title}</label>
                         <input type={el.type} name={el.name} className="authreg__inp" {...register(el.name, el.settings)} />
                         <p className="authreg__error">{errors?.[el.name] ? errors?.[el.name].message : ''}</p>

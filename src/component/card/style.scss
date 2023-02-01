@@ -9,8 +9,12 @@
     align-items: center;
     box-shadow: 1px 2px 16px 3px rgba(54, 58, 69, 0.08);
     border-radius: 8.00611px;
-    // border: 2px solid #00C65E;
-    // overflow: hidden;
+    position: relative;
+    .card__favorite {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+    }
     .card__img {
         height: 106px;
         img {

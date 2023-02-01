@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
+import { productApi } from './assets/api/api'
 import Footer from './component/foot/Footer'
 import Header from './component/header/Header'
 import Auth from './page/auth/Auth'
@@ -17,6 +18,10 @@ const App = () => {
       setLocation(false);
     }
   }, [locat]);
+
+  useEffect(() => {
+    productApi.getFavorites()
+  }, [])
 
   return (
     <div className="App">

@@ -5,7 +5,7 @@ import { changeObjToForm, setLocal } from "../defFunction/defFunction";
 const instance = axios.create({
     baseURL: `https://cryxxen.pythonanywhere.com/`
 });
-
+let header = { Authorization: `Bearer ${localStorage.getItem("token")}` }
 
 export const userApi = {
     register(data, setIsLoad) {
@@ -67,8 +67,17 @@ export const userApi = {
     },
 }
 
+
 export const productApi = {
     getAllProduct() {
         return instance.get('products/product')
+    },
+    postFavorite(id) {
+        const product = { "product": id }
+        console.log(id)
+        return instance.post(`favorites/`, product, { headers: header })
+    },
+    getFavorites() {
+        return instance.get('favorites/', { headers: header })
     }
 }

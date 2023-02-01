@@ -27,8 +27,8 @@ const Nav = () => {
         <div className="head__nav">
             <h2>BuySell.kg</h2>
             <div className="head__links">
-                {navObj.map(el => {
-                    return <NavLink onClick={() => setActiveLink(el.location)} to={el.location} className={`head__link ${activeLink == el.location && 'head__link-active'}`}>{el.name}</NavLink>
+                {navObj.map((el, ind) => {
+                    return <NavLink key={ind} onClick={() => setActiveLink(el.location)} to={el.location} className={`head__link ${activeLink == el.location && 'head__link-active'}`}>{el.name}</NavLink>
                 })}
             </div>
         </div>

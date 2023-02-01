@@ -1,5 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './style.scss'
+import favorite from '../../assets/img/favorite.svg'
+import favoriteEmpty from '../../assets/img/favoriteEmpty.svg'
+import { addFavorite } from '../../store/reducers/ActionCreator'
+import { useDispatch } from 'react-redux'
 /*
 image
 title
@@ -7,8 +11,19 @@ price
 category
 */
 const Card = ({ data }) => {
+    const [isFavorite, setIsFavorite] = useState(false)
+    const dispatch = useDispatch()
+
+    const favorite = () => {
+        dispatch(addFavorite(data.id))
+    }
+
     return (
         <div className='card'>
+            <img src={isFavorite ? favorite : favoriteEmpty}
+                alt="favorite"
+                className='card__favorite'
+                onClick={favorite} />
             <div className="card__img">
                 <img src={data.image} alt="img" />
             </div>
