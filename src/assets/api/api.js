@@ -10,11 +10,9 @@ let header = { Authorization: `Bearer ${localStorage.getItem("token")}` }
 export const userApi = {
     register(data, setIsLoad) {
         data.phone_number = "+" + data.phone_number
-        if (data.avatarka["length"] === 0) {
-            delete data.avatarka
-        } else {
-            data.avatarka = data.avatarka[0]
-        }
+        if (data.avatarka["length"] === 0) delete data.avatarka
+        else data.avatarka = data.avatarka[0]
+
         let newFormData = changeObjToForm(data)
         return instance.post('users/user/', newFormData)
             .then(() => {
@@ -25,8 +23,7 @@ export const userApi = {
                     title: 'Успешно зарегистрированы.Теперь вы можете войти',
                     showConfirmButton: true
                 })
-            })
-            .catch((el) => {
+            }).catch((el) => {
                 setIsLoad(false)
                 let errorMess = Object.values(el.response.data)[0][0]
                 modal.fire({
@@ -79,5 +76,14 @@ export const productApi = {
     },
     getFavorites() {
         return instance.get('favorites/', { headers: header })
+    },
+    getCategory() {
+        return instance.get('categories/category/')
+    },
+    getProductsOfCategory(id) {
+        return instance.get(`categories/category/${id}/`)
+            .then((el) => {
+                console.log(el)
+            })
     }
 }

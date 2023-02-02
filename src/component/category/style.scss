@@ -1,0 +1,28 @@
+.category {
+    // .container {
+    //     align-items: center;
+    //     justify-content: center;
+    // }
+    .category__list {
+        display: flex;
+        gap: 4px;
+        border-radius: 10px;
+        flex-wrap: wrap;
+        .category__item {
+            border: 1px solid #DADCDC;
+            border-radius: 10px;
+            padding: 2px 4px;
+            cursor: pointer;
+            &:hover {
+                background: #b3eecf;
+            color: black;
+            border-bottom: 2px solid  #00C65E;
+            }
+        }
+        .category__item-active {
+            background: #b3eecf;
+            color: black;
+            border-bottom: 2px solid  #00C65E;
+        }
+    }
+}

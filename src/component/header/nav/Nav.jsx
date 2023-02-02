@@ -4,20 +4,20 @@ import { useState } from 'react'
 
 const navObj = [
     {
-        name: 'Home',
+        name: 'Главная',
         location: '/'
     },
     {
-        name: 'AboutUs',
-        location: '/AboutUs'
+        name: 'О нас',
+        location: '/aboutUs'
     },
     {
-        name: 'Products',
-        location: '/Products'
+        name: 'Товары',
+        location: '/products'
     },
     {
-        name: 'Profile',
-        location: '/Profile'
+        name: 'Профиль',
+        location: '/profile'
     },
 ]
 const Nav = () => {

@@ -6,6 +6,7 @@ import Footer from './component/foot/Footer'
 import Header from './component/header/Header'
 import Auth from './page/auth/Auth'
 import MainPage from './page/main/MainPage'
+import Products from './page/products/Products'
 
 const App = () => {
   const locat = useLocation();
@@ -29,6 +30,7 @@ const App = () => {
       <Routes>
         <Route path='auth' element={<Auth />} />
         <Route path={'/'} element={<MainPage />} />
+        <Route path={'/products'} element={<Products />} />
       </Routes>
       {!location && <Footer />}
     </div>

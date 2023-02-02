@@ -14,7 +14,7 @@ const Card = ({ data }) => {
     const [isFavorite, setIsFavorite] = useState(false)
     const dispatch = useDispatch()
 
-    const favorite = () => {
+    const favoriteF = () => {
         dispatch(addFavorite(data.id))
     }
 
@@ -23,7 +23,7 @@ const Card = ({ data }) => {
             <img src={isFavorite ? favorite : favoriteEmpty}
                 alt="favorite"
                 className='card__favorite'
-                onClick={favorite} />
+                onClick={favoriteF} />
             <div className="card__img">
                 <img src={data.image} alt="img" />
             </div>

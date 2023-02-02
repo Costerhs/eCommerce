@@ -14,3 +14,17 @@ export const addFavorite = createAsyncThunk('favorite',
         console.log(res)
     }
 )
+
+export const getCategory = createAsyncThunk('category',
+    async () => {
+        const res = await productApi.getCategory()
+        return res.data
+    }
+)
+
+export const getProductsOfCategories = createAsyncThunk('productOfcategory',
+    async (id) => {
+        const res = await productApi.getProductsOfCategory(id)
+        return res.data
+    }
+)

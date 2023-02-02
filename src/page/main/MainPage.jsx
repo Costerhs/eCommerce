@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import Card from '../../component/card/Card'
+
 import LoaderList from '../../component/loaderOfCard/LoaderList';
-import MyLoader from '../../component/loaderOfCard/LoaderOfCard';
+import ProductsList from '../../component/productsList/ProductsList';
 import { getProducts } from '../../store/reducers/ActionCreator';
 import Banner from './banner/Banner';
 import './style.scss'
@@ -21,14 +21,7 @@ const MainPage = () => {
             <Banner />
             <div className="container">
                 <h2>Популярные товары</h2>
-                <div className="main__list">
-                    {load && <LoaderList />}
-
-                    {products.length > 0 ? products.map((el, ind) => {
-                        return <Card data={el} key={ind} />
-                    }) : 'Товары отсутствуют'}
-
-                </div>
+                <ProductsList load={load} products={products} />
             </div>
         </div>
     )
