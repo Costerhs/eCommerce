@@ -8,9 +8,10 @@ import './style.scss'
 
 const Products = () => {
     const products = useSelector(el => el.productReducer.products)
-    const [productsOfCategory, setProductsOfCategory] = useState()
+    const [partOfProduct, setPartOfProduct] = useState()
     const load = useSelector(el => el.productReducer.load)
     const [activeCategory, setActiveCategory] = useState(null)
+    const [searchText, setSearchText] = useState();
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -19,18 +20,25 @@ const Products = () => {
 
     useEffect(() => {
         let arr = products.filter(el => el.category === activeCategory)
-        setProductsOfCategory(arr)
+        setPartOfProduct(arr)
+        setSearchText('')
     }, [activeCategory])
+
     useEffect(() => {
-        console.log(productsOfCategory)
-    }, [productsOfCategory])
+        let arr = products.filter(el => {
+            return el.title.includes(searchText)
+        })
+        setPartOfProduct(arr)
+        setActiveCategory(null)
+    }, [searchText])
+
     return (
         <div className='products'>
             <div className="container">
-                {/* <Search /> */}
+                <Search setSearchText={setSearchText} searchText={searchText} />
                 <Category setActiveCategory={setActiveCategory} activeCategory={activeCategory} />
                 <h2>Товары</h2>
-                <ProductsList products={activeCategory ? productsOfCategory : products} load={load} />
+                <ProductsList products={(activeCategory || searchText) ? partOfProduct : products} load={load} />
             </div>
         </div>
     )
