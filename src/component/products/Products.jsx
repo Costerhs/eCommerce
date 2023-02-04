@@ -32,7 +32,7 @@ const Products = ({ title, products }) => {
                 <Search setSearchText={setSearchText} searchText={searchText} />
                 <Category setActiveCategory={setActiveCategory} activeCategory={activeCategory} />
                 <h2>{title}</h2>
-                <ProductsList products={(activeCategory || searchText) ? partOfProduct : products} load={load} />
+                <ProductsList activeCategory={activeCategory} products={(activeCategory || searchText) ? partOfProduct : products} load={load} />
             </div>
         </div>
     )
