@@ -6,6 +6,7 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import Burger from './burger/Burger'
 import Nav from './nav/Nav'
 import { RxAvatar } from 'react-icons/rx'
+import { NavLink } from 'react-router-dom'
 const Header = () => {
     return (
         <div className='head'>
@@ -15,7 +16,9 @@ const Header = () => {
                 <Nav />
                 <div className="head__user">
                     <div className="head__icons">
-                        <MdFavorite className='head__icon' />
+                        <NavLink to={'favorites/'}>
+                            <MdFavorite className='head__icon' />
+                        </NavLink>
                         <BsBasketFill className='head__icon' />
                     </div>
                     {/* <img src={localStorage.getItem("avatarka")} alt='avatar' />

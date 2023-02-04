@@ -5,8 +5,9 @@ import { productApi } from './assets/api/api'
 import Footer from './component/foot/Footer'
 import Header from './component/header/Header'
 import Auth from './page/auth/Auth'
+import FavoritesPage from './page/favoritesPage/FavoritesPage'
 import MainPage from './page/main/MainPage'
-import Products from './page/products/Products'
+import ProductsPage from './page/productsPage/ProductsPage'
 
 const App = () => {
   const locat = useLocation();
@@ -30,7 +31,8 @@ const App = () => {
       <Routes>
         <Route path='auth' element={<Auth />} />
         <Route path={'/'} element={<MainPage />} />
-        <Route path={'/products'} element={<Products />} />
+        <Route path={'/products'} element={<ProductsPage />} />
+        <Route path={'/favorites'} element={<FavoritesPage />} />
       </Routes>
       {!location && <Footer />}
     </div>

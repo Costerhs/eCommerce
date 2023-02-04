@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { addFavorite, getCategory, getProductsOfCategories, getProducts } from "./ActionCreator"
+import { addFavorite, getCategory, getProductsOfCategories, getProducts, getFavoritsThunk } from "./ActionCreator"
 
 const initialState = {
     load: false,
     products: [],
     category: [],
-    productsOfCategory: []
+    productsOfCategory: [],
+    favoritesProduct: []
 }
 
 export const ProductsSlice = createSlice({
@@ -26,7 +27,15 @@ export const ProductsSlice = createSlice({
         },
         [getProductsOfCategories.fulfilled.type]: (state, action) => {
             state.productsOfCategory = action.payload
-        }
+        },
+        [getFavoritsThunk.fulfilled.type]: (state, action) => {
+            state.favoritesProduct = action.payload
+            state.load = false
+        },
+        [getFavoritsThunk.pending.type]: (state, action) => {
+            // state.favoritesProduct = action.payload
+            state.load = true
+        },
     }
 }
 )

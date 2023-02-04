@@ -85,5 +85,8 @@ export const productApi = {
             .then((el) => {
                 console.log(el)
             })
+    },
+    getFavorites() {
+        return instance.get('favorites/', { headers: header })
     }
 }

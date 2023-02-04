@@ -28,3 +28,14 @@ export const getProductsOfCategories = createAsyncThunk('productOfcategory',
         return res.data
     }
 )
+
+export const getFavoritsThunk = createAsyncThunk('getFavorites',
+    async () => {
+        const favArr = await productApi.getFavorites()
+        let favArrIds = favArr.data.map(el => el.product)
+        const productRes = await productApi.getAllProduct()
+        let arr = productRes.data.filter(el => favArrIds.includes(el.id))
+
+        return arr
+    }
+)
