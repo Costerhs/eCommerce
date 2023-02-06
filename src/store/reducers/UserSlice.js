@@ -1,19 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit"
-
+import { getUser } from "./ActionCreator"
 
 const initialState = {
-    users: [],
+    user: {},
     isLoading: false,
-    error: '',
-    count: 0
+    error: ''
 }
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        increment(state, action) {
-            state.count += action.payload
+    },
+    extraReducers: {
+        [getUser.fulfilled.type]: (state, action) => {
+            state.user = action.payload
+            state.isLoading = false
+        },
+        [getUser.pending.type]: (state, action) => {
+            state.isLoading = true
         }
     }
 })

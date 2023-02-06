@@ -62,6 +62,9 @@ export const userApi = {
                     })
             })
     },
+    getUserById(id) {
+        return instance.get(`users/user/${id}/`)
+    }
 }
 
 

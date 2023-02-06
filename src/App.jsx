@@ -8,6 +8,7 @@ import Auth from './page/auth/Auth'
 import FavoritesPage from './page/favoritesPage/FavoritesPage'
 import MainPage from './page/main/MainPage'
 import ProductsPage from './page/productsPage/ProductsPage'
+import Profile from './page/profile/Profile'
 
 const App = () => {
   const locat = useLocation();
@@ -33,6 +34,7 @@ const App = () => {
         <Route path={'/'} element={<MainPage />} />
         <Route path={'/products'} element={<ProductsPage />} />
         <Route path={'/favorites'} element={<FavoritesPage />} />
+        <Route path={'/profile'} element={<Profile />} />
       </Routes>
       {!location && <Footer />}
     </div>

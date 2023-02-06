@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { productApi } from "../../assets/api/api";
+import { productApi, userApi } from "../../assets/api/api";
 
 export const getProducts = createAsyncThunk('products',
     async () => {
@@ -37,5 +37,12 @@ export const getFavoritsThunk = createAsyncThunk('getFavorites',
         let arr = productRes.data.filter(el => favArrIds.includes(el.id))
 
         return arr
+    }
+)
+
+export const getUser = createAsyncThunk('user',
+    async (id) => {
+        const res = await userApi.getUserById(id)
+        return res.data
     }
 )
