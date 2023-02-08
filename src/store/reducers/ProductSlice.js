@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { removeLokPropertyWithId } from "../../assets/defFunction/defFunction"
 import { addFavorite, getCategory, getProductsOfCategories, getProducts, getFavoritsThunk } from "./ActionCreator"
 
 const initialState = {
@@ -12,7 +13,10 @@ const initialState = {
 export const ProductsSlice = createSlice({
     name: 'products',
     initialState,
-    reducer: {
+    reducers: {
+        delFavorite(state, action) {
+            state[action.payload.arr] = state[action.payload.arr].filter(el => el.id != action.payload.id)
+        }
     },
     extraReducers: {
         [getProducts.fulfilled.type]: (state, action) => {
@@ -39,4 +43,6 @@ export const ProductsSlice = createSlice({
     }
 }
 )
+export const { delFavorite } = ProductsSlice.actions;
+
 export default ProductsSlice.reducer

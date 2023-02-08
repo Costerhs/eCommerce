@@ -22,9 +22,9 @@ const App = () => {
     }
   }, [locat]);
 
-  useEffect(() => {
-    productApi.getFavorites()
-  }, [])
+  // useEffect(() => {
+  //   productApi.getFavorites()
+  // }, [])
 
   return (
     <div className="App">

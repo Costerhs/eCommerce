@@ -4,14 +4,30 @@ import { productApi, userApi } from "../../assets/api/api";
 export const getProducts = createAsyncThunk('products',
     async () => {
         const res = await productApi.getAllProduct()
-        return res.data
+        const favArray = await productApi.getFavorites()
+        let product = res.data
+        product.map(el => {
+            for (let elem of favArray.data) {
+                if (el.id == elem.product) {
+                    el['deleteId'] = elem.id;
+                }
+            }
+        });
+        return product
     }
 )
 
 export const addFavorite = createAsyncThunk('favorite',
     async (id) => {
         const res = await productApi.postFavorite(id)
-        console.log(res)
+        return res.data.id
+    }
+)
+
+export const deleteFavorite = createAsyncThunk('favoriteDel',
+    async (id) => {
+        const res = await productApi.delFavorite(id)
+        return res.data.id
     }
 )
 
@@ -31,12 +47,18 @@ export const getProductsOfCategories = createAsyncThunk('productOfcategory',
 
 export const getFavoritsThunk = createAsyncThunk('getFavorites',
     async () => {
-        const favArr = await productApi.getFavorites()
-        let favArrIds = favArr.data.map(el => el.product)
-        const productRes = await productApi.getAllProduct()
-        let arr = productRes.data.filter(el => favArrIds.includes(el.id))
-
-        return arr
+        const res = await productApi.getAllProduct()
+        const favArray = await productApi.getFavorites()
+        let product = res.data
+        product.map(el => {
+            for (let elem of favArray.data) {
+                if (el.id == elem.product) {
+                    el['deleteId'] = elem.id;
+                }
+            }
+        });
+        let filteredProduct = product.filter(el => el.deleteId)
+        return filteredProduct
     }
 )
 
@@ -46,3 +68,12 @@ export const getUser = createAsyncThunk('user',
         return res.data
     }
 )
+
+/*async () => {
+        const favArr = await productApi.getFavorites()
+        let favArrIds = favArr.data.map(el => el.product)
+        const productRes = await productApi.getAllProduct()
+        let arr = productRes.data.filter(el => favArrIds.includes(el.id))
+        debugger
+        return arr
+    }*/

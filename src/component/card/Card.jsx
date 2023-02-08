@@ -2,21 +2,34 @@ import { useEffect, useState } from 'react'
 import './style.scss'
 import favorite from '../../assets/img/favorite.svg'
 import favoriteEmpty from '../../assets/img/favoriteEmpty.svg'
-import { addFavorite } from '../../store/reducers/ActionCreator'
+import { addFavorite, deleteFavorite } from '../../store/reducers/ActionCreator'
 import { useDispatch } from 'react-redux'
-/*
-image
-title
-price
-category
-*/
+import ProductsSlice from '../../store/reducers/ProductSlice'
+import { delFavorite } from '../../store/reducers/ProductSlice'
+
 const Card = ({ data }) => {
     const [isFavorite, setIsFavorite] = useState(false)
     const dispatch = useDispatch()
 
-    const favoriteF = () => {
-        dispatch(addFavorite(data.id))
+    const favoriteF =  () => {
+        if (isFavorite) {
+            dispatch(delFavorite({ id: data.id, arr: 'favoritesProduct' }))
+            dispatch(deleteFavorite(data.deleteId))
+            setIsFavorite(false)
+        } else {
+            let res = dispatch(addFavorite(data.id))
+            setIsFavorite(res)
+        }
     }
+
+    useEffect(() => {
+        if (data.deleteId) {
+            setIsFavorite(true)
+        }
+    }, [])
+    useEffect(() => {
+        console.log(data)
+    }, [isFavorite])
 
     return (
         <div className='card'>

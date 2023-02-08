@@ -3,7 +3,7 @@ import Card from '../../component/card/Card'
 import LoaderList from '../loaderOfCard/LoaderList'
 import Pagination from '../pagination/Pagination'
 import { useEffect, useState } from 'react'
-import pr from '../../assets/localData/pr'
+
 
 const ProductsList = ({ load, products, activeCategory }) => {
     const [order, setOrder] = useState(1)

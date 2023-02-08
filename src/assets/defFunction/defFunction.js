@@ -17,3 +17,13 @@ export const getFilled = (obj) => {
     })
     return obj
 }
+
+export function removeLokPropertyWithId(arr, id) {
+    return arr.map(el => {
+        if (el.id === id) {
+            const { deleteId, ...rest } = el;
+            return rest;
+        }
+        return el;
+    });
+}

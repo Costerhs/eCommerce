@@ -77,9 +77,6 @@ export const productApi = {
         console.log(id)
         return instance.post(`favorites/`, product, { headers: header })
     },
-    getFavorites() {
-        return instance.get('favorites/', { headers: header })
-    },
     getCategory() {
         return instance.get('categories/category/')
     },
@@ -91,5 +88,8 @@ export const productApi = {
     },
     getFavorites() {
         return instance.get('favorites/', { headers: header })
+    },
+    delFavorite(id) {
+        return instance.delete('favorites/' + id + '/', { headers: header })
     }
 }
