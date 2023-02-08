@@ -3,10 +3,13 @@ import Card from '../../component/card/Card'
 import LoaderList from '../loaderOfCard/LoaderList'
 import Pagination from '../pagination/Pagination'
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 
 const ProductsList = ({ load, products, activeCategory }) => {
     const [order, setOrder] = useState(1)
+    const isDel = useLocation().pathname.indexOf('favorites')
+
     useEffect(() => {
         //когда меняется категория то пагинация сбрасывается
         setOrder(1)
@@ -17,7 +20,7 @@ const ProductsList = ({ load, products, activeCategory }) => {
             <div className="productsList__list">
                 {load && <LoaderList />}
                 {products.length > 0 && products.slice((order * 4) - 4, order * 4).map((el, ind) => {
-                    return <Card data={el} key={ind} />
+                    return <Card isDel={isDel} data={el} key={ind} />
                 })}
                 {products.length > 0 && load && 'Товары отсутствуют'}
             </div>

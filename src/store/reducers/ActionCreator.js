@@ -27,6 +27,7 @@ export const addFavorite = createAsyncThunk('favorite',
 export const deleteFavorite = createAsyncThunk('favoriteDel',
     async (id) => {
         const res = await productApi.delFavorite(id)
+        getProducts()
         return res.data.id
     }
 )

@@ -1,21 +1,19 @@
-import { useEffect, useState } from 'react'
 import './style.scss'
 import favorite from '../../assets/img/favorite.svg'
 import favoriteEmpty from '../../assets/img/favoriteEmpty.svg'
 import { addFavorite, deleteFavorite } from '../../store/reducers/ActionCreator'
 import { useDispatch } from 'react-redux'
-import ProductsSlice from '../../store/reducers/ProductSlice'
 import { delFavorite } from '../../store/reducers/ProductSlice'
+import { useEffect, useState } from 'react'
 
-const Card = ({ data }) => {
-    const [isFavorite, setIsFavorite] = useState(false)
+const Card = ({ data, isDel }) => {
     const dispatch = useDispatch()
+    const [isFavorite, setIsFavorite] = useState(false)
 
-    const favoriteF =  () => {
-        if (isFavorite) {
+    const favoriteF = () => {
+        if (isDel >= 1) {
             dispatch(delFavorite({ id: data.id, arr: 'favoritesProduct' }))
             dispatch(deleteFavorite(data.deleteId))
-            setIsFavorite(false)
         } else {
             let res = dispatch(addFavorite(data.id))
             setIsFavorite(res)
@@ -25,12 +23,9 @@ const Card = ({ data }) => {
     useEffect(() => {
         if (data.deleteId) {
             setIsFavorite(true)
+            console.log(data.deleteId + ' ____ ' + data.id)
         }
     }, [])
-    useEffect(() => {
-        console.log(data)
-    }, [isFavorite])
-
     return (
         <div className='card'>
             <img src={isFavorite ? favorite : favoriteEmpty}
