@@ -91,5 +91,20 @@ export const productApi = {
     },
     delFavorite(id) {
         return instance.delete('favorites/' + id + '/', { headers: header })
+    },
+    getBasket() {
+        return instance.get('baskets/', { headers: header })
+    },
+    addBasket(id) {
+        let obj = {
+            "products": [
+                String(id)
+            ],
+            "is_active": true
+        }
+        return instance.post('baskets/', obj, { headers: header })
+    },
+    deleteBasket(id) {
+        return instance.delete(`baskets/${id}/`, { headers: header })
     }
 }

@@ -19,7 +19,9 @@ const Header = () => {
                         <NavLink to={'favorites/'}>
                             <MdFavorite className='head__icon' />
                         </NavLink>
-                        <BsBasketFill className='head__icon' />
+                        <NavLink to={'basket/'}>
+                            <BsBasketFill className='head__icon' />
+                        </NavLink>
                     </div>
                     {/* <img src={localStorage.getItem("avatarka")} alt='avatar' />
                     <p>{localStorage.getItem('username')}</p> */}

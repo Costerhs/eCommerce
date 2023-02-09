@@ -1,13 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { removeLokPropertyWithId } from "../../assets/defFunction/defFunction"
-import { addFavorite, getCategory, getProductsOfCategories, getProducts, getFavoritsThunk } from "./ActionCreator"
+import { addFavorite, getCategory, getProductsOfCategories, getProducts, getFavoritsThunk, getBasket, addBasket, deleteBasket, deletePack } from "./ActionCreator"
 
 const initialState = {
     load: false,
+    loadBasket:false,
     products: [],
     category: [],
     productsOfCategory: [],
-    favoritesProduct: []
+    favoritesProduct: [],
+    basketProducts: {},
+    sum: 0
 }
 
 export const ProductsSlice = createSlice({
@@ -21,7 +24,7 @@ export const ProductsSlice = createSlice({
     extraReducers: {
         [getProducts.fulfilled.type]: (state, action) => {
             state.load = false,
-                state.products = action.payload
+            state.products = action.payload
         },
         [getProducts.pending.type]: (state, action) => {
             state.load = true
@@ -37,8 +40,34 @@ export const ProductsSlice = createSlice({
             state.load = false
         },
         [getFavoritsThunk.pending.type]: (state, action) => {
-            // state.favoritesProduct = action.payload
             state.load = true
+        },
+        [getBasket.fulfilled.type]: (state, action) => {
+            state.basketProducts = action.payload.data
+            state.sum = action.payload.total
+            state.loadBasket = false
+        },
+        [getBasket.pending.type]: (state, action) => {
+            state.loadBasket = true
+        },
+        [addBasket.fulfilled.type]: (state, action) => {
+        },
+        [addBasket.pending.type]: (state, action) => {
+            state.loadBasket = true
+        },
+        [deleteBasket.fulfilled.type]: (state, action) => {
+        },
+        [deleteBasket.pending.type]: (state, action) => {
+            state.loadBasket = true
+        },
+        [deleteBasket.rejected.type]: (state, action) => {
+            state.loadBasket = false
+        },
+        [deletePack.pending.type]: (state, action) => {
+            state.loadBasket = true
+        },
+        [deletePack.rejected.type]: (state, action) => {
+            state.loadBasket = false
         },
     }
 }

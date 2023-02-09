@@ -5,6 +5,7 @@ import { productApi } from './assets/api/api'
 import Footer from './component/foot/Footer'
 import Header from './component/header/Header'
 import Auth from './page/auth/Auth'
+import Basket from './page/basket/Basket'
 import FavoritesPage from './page/favoritesPage/FavoritesPage'
 import MainPage from './page/main/MainPage'
 import ProductsPage from './page/productsPage/ProductsPage'
@@ -35,6 +36,7 @@ const App = () => {
         <Route path={'/products'} element={<ProductsPage />} />
         <Route path={'/favorites'} element={<FavoritesPage />} />
         <Route path={'/profile'} element={<Profile />} />
+        <Route path='/basket' element={<Basket />} />
       </Routes>
       {!location && <Footer />}
     </div>

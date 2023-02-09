@@ -70,6 +70,51 @@ export const getUser = createAsyncThunk('user',
     }
 )
 
+export const getBasket = createAsyncThunk('getBasket',
+    async () => {
+        const res = await productApi.getBasket()
+        let basketsData = res.data
+        let total = 0;
+        let cArr = {};
+        basketsData.map(el => {
+            total += el.total
+            if (cArr[el.products_data[0].id]) {
+                cArr[el.products_data[0].id].ids.push(el.id)
+            } else {
+                cArr[el.products_data[0].id] = { ids: [el.id], data: el.products_data, total: el.total }
+            }
+        })
+        return { total: total, data: cArr }
+    }
+)
+
+export const addBasket = createAsyncThunk('addBasket', async (id) => {
+    const res = await productApi.addBasket(id)
+    console.log(res)
+    return res.data
+})
+
+export const deleteBasket = createAsyncThunk('deleteBasket', async (id) => {
+    const res = await productApi.deleteBasket(id)
+    return res.data
+})
+
+export const deletePack = createAsyncThunk('deletePack' , async (arr) => {
+    //когда num будет количеству продуктов то будет await чтобы после await сделать запрос на get baskets
+    //если же сделать без await то запрос get baskets Будет до того как все удалилось 
+    //если всем дать await то будет долгий запрос, сначала 1й удалится потом запрос на 2й  и тд. А в этом случае делается все запросы без await кроме последнего
+    let num = 0;
+    for (let elem of arr) {
+        if(num+1 === arr.length)  await productApi.deleteBasket(elem)
+        else {
+            num++
+            productApi.deleteBasket(elem)
+        }
+    }
+    return 
+})
+
+
 /*async () => {
         const favArr = await productApi.getFavorites()
         let favArrIds = favArr.data.map(el => el.product)

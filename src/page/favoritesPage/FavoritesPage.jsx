@@ -12,9 +12,6 @@ const FavoritesPage = () => {
     useEffect(() => {
         dispatch(getFavoritsThunk())
     }, [])
-    useEffect(() => {
-        console.log(favoriteProducts)
-    }, [favoriteProducts])
 
     return (
         <div>
