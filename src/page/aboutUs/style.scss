@@ -1,0 +1,15 @@
+.aboutUs {
+    margin-bottom: 50px;
+    .container {
+        .aboutUs__title {
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .aboutUs__description {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            font-size: 18px;
+        }
+    }
+}

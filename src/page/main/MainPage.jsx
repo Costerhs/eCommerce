@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoaderList from '../../component/loaderOfCard/LoaderList';
 import ProductsList from '../../component/productsList/ProductsList';
 import { getProducts } from '../../store/reducers/ActionCreator';
-import Banner from './banner/Banner';
+import Slider from './slider/Slider';
 import './style.scss'
 
 const MainPage = () => {
@@ -22,7 +22,7 @@ const MainPage = () => {
 
     return (
         <div className='main'>
-            <Banner />
+            <Slider />
             <div className="container">
                 <h2>Популярные товары</h2>
                 <ProductsList load={load} products={products} />

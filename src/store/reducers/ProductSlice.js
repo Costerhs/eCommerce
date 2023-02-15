@@ -4,7 +4,7 @@ import { addFavorite, getCategory, getProductsOfCategories, getProducts, getFavo
 
 const initialState = {
     load: false,
-    loadBasket:false,
+    loadBasket: false,
     products: [],
     category: [],
     productsOfCategory: [],
@@ -24,7 +24,7 @@ export const ProductsSlice = createSlice({
     extraReducers: {
         [getProducts.fulfilled.type]: (state, action) => {
             state.load = false,
-            state.products = action.payload
+                state.products = action.payload
         },
         [getProducts.pending.type]: (state, action) => {
             state.load = true
@@ -69,6 +69,13 @@ export const ProductsSlice = createSlice({
         [deletePack.rejected.type]: (state, action) => {
             state.loadBasket = false
         },
+        [addFavorite.fulfilled.type]: (state, action) => {
+            state.products.map(el => {
+                if (el.id === action.payload.id) {
+                    el.deleteId = action.payload.deleteId
+                }
+            })
+        }
     }
 }
 )

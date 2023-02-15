@@ -19,10 +19,10 @@ const ProductsList = ({ load, products, activeCategory }) => {
         <div className='productsList'>
             <div className="productsList__list">
                 {load && <LoaderList />}
-                {products.length > 0 && products.slice((order * 4) - 4, order * 4).map((el, ind) => {
+                {products.length > 0 && !load && products.slice((order * 4) - 4, order * 4).map((el, ind) => {
                     return <Card isDel={isDel} data={el} key={ind} />
                 })}
-                {products.length > 0 && load && 'Товары отсутствуют'}
+                {products.length === 0 && !load && 'Товары отсутствуют'}
             </div>
             <Pagination lengths={products.length} order={order} setOrder={setOrder} />
         </div>

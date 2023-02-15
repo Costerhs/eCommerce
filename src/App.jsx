@@ -4,6 +4,7 @@ import './App.css'
 import { productApi } from './assets/api/api'
 import Footer from './component/foot/Footer'
 import Header from './component/header/Header'
+import AboutUs from './page/aboutUs/AboutUs'
 import Auth from './page/auth/Auth'
 import Basket from './page/basket/Basket'
 import FavoritesPage from './page/favoritesPage/FavoritesPage'
@@ -37,6 +38,7 @@ const App = () => {
         <Route path={'/favorites'} element={<FavoritesPage />} />
         <Route path={'/profile'} element={<Profile />} />
         <Route path='/basket' element={<Basket />} />
+        <Route path='/aboutUs' element={<AboutUs />} />
       </Routes>
       {!location && <Footer />}
     </div>
