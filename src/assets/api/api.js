@@ -59,6 +59,7 @@ export const userApi = {
                     .then(() => {
                         setIsLoad(false)
                         navigate('/')
+                        window.location.reload
                     })
             })
     },
@@ -74,7 +75,7 @@ export const productApi = {
     },
     postFavorite(id) {
         const product = { "product": id }
-        console.log(id)
+
         return instance.post(`favorites/`, product, { headers: header })
     },
     getCategory() {

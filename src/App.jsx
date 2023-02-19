@@ -15,7 +15,7 @@ import Profile from './page/profile/Profile'
 const App = () => {
   const locat = useLocation();
   const [location, setLocation] = useState(false);
-
+  const token = localStorage.getItem('token')
   useEffect(() => {
     if (locat.pathname === "/auth") {
       setLocation(true);
@@ -24,20 +24,20 @@ const App = () => {
     }
   }, [locat]);
 
-  // useEffect(() => {
-  //   productApi.getFavorites()
-  // }, [])
+
 
   return (
     <div className="App">
       {!location && <Header />}
       <Routes>
+        {token && <>
+          <Route path={'/favorites'} element={<FavoritesPage />} />
+          <Route path={'/profile'} element={<Profile />} />
+          <Route path='/basket' element={<Basket />} />
+        </>}
         <Route path='auth' element={<Auth />} />
         <Route path={'/'} element={<MainPage />} />
         <Route path={'/products'} element={<ProductsPage />} />
-        <Route path={'/favorites'} element={<FavoritesPage />} />
-        <Route path={'/profile'} element={<Profile />} />
-        <Route path='/basket' element={<Basket />} />
         <Route path='/aboutUs' element={<AboutUs />} />
       </Routes>
       {!location && <Footer />}

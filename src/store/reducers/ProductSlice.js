@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import Swal from "sweetalert2"
 import { removeLokPropertyWithId } from "../../assets/defFunction/defFunction"
 import { addFavorite, getCategory, getProductsOfCategories, getProducts, getFavoritsThunk, getBasket, addBasket, deleteBasket, deletePack } from "./ActionCreator"
 
@@ -24,7 +25,7 @@ export const ProductsSlice = createSlice({
     extraReducers: {
         [getProducts.fulfilled.type]: (state, action) => {
             state.load = false,
-                state.products = action.payload
+            state.products = action.payload
         },
         [getProducts.pending.type]: (state, action) => {
             state.load = true
@@ -56,6 +57,7 @@ export const ProductsSlice = createSlice({
             state.loadBasket = true
         },
         [deleteBasket.fulfilled.type]: (state, action) => {
+            // return Swal
         },
         [deleteBasket.pending.type]: (state, action) => {
             state.loadBasket = true

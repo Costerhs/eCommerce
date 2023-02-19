@@ -4,12 +4,12 @@ import favoriteEmpty from '../../assets/img/favoriteEmpty.svg'
 import { addBasket, addFavorite, deleteFavorite } from '../../store/reducers/ActionCreator'
 import { useDispatch } from 'react-redux'
 import { delFavorite } from '../../store/reducers/ProductSlice'
-import { useEffect, useState } from 'react'
 import { SlBasket } from 'react-icons/sl'
+import Swal from 'sweetalert2'
 
 const Card = ({ data, isDel }) => {
     const dispatch = useDispatch()
-
+    const token = localStorage.getItem('token')
     const favoriteF = () => {
         if (isDel >= 1) {
             dispatch(delFavorite({ id: data.id, arr: 'favoritesProduct' }))
@@ -18,19 +18,25 @@ const Card = ({ data, isDel }) => {
             dispatch(addFavorite(data.id))
         }
     }
-    const addBaskets = () => {
-        dispatch(addBasket(data.id))
+    const addBaskets = async() => {
+        await dispatch(addBasket(data.id))
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Успешно добавлено в корзину'
+        })
     }
 
 
     return (
         <div className='card'>
             <div className="card__btns">
-                <img src={data.deleteId ? favorite : favoriteEmpty}
+                {token && <><img src={data.deleteId ? favorite : favoriteEmpty}
                     alt="favorite"
                     // className='card__favorite'
                     onClick={favoriteF} />
-                <SlBasket className='card__del' onClick={addBaskets} />
+                    <SlBasket className='card__del' onClick={addBaskets} /></>}
+
             </div>
             <div className="card__img">
                 <img src={data.image} alt="img" />
@@ -41,6 +47,7 @@ const Card = ({ data, isDel }) => {
             <div className="card__price">
                 {data.price} сом
             </div>
+
         </div>
     )
 }

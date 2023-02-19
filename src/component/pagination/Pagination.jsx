@@ -9,7 +9,11 @@ const Pagination = ({ lengths, setOrder, order }) => {
     const [pagNum, setPagNum] = useState(Array(Math.round(lengths / 4)).fill(null))
 
     useEffect(() => {
-        setPagNum(Array(Math.round(lengths / 4)).fill(null))
+        setPagNum(Array(Math.ceil(lengths / 4)).fill(null))
+        console.log(lengths, pagNum.length, order)
+        if (lengths % 4 === 0 && pagNum.length == order) {
+            setOrder(pagNum.length - 1)
+        }
     }, [lengths])
 
     return (

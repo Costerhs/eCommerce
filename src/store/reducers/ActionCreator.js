@@ -1,22 +1,49 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-hot-toast";
 import { productApi, userApi } from "../../assets/api/api";
+
+/*const token = localStorage.getItem('token')
 
 export const getProducts = createAsyncThunk('products',
     async () => {
         const res = await productApi.getAllProduct()
-        const favArray = await productApi.getFavorites()
-        let product = res.data
-        product.map(el => {
-            for (let elem of favArray.data) {
-                if (el.id == elem.product) {
-                    el['deleteId'] = elem.id;
+        let product;
+        if (token) {
+            const favArray = await productApi.getFavorites()
+            product = res.data
+            product.map(el => {
+                for (let elem of favArray.data) {
+                    if (el.id == elem.product) {
+                        el['deleteId'] = elem.id;
+                    }
                 }
-            }
-        });
-        return product
+            });
+            return product
+        } else {
+            return res.data
+        }
     }
 )
+*/
+const token = localStorage.getItem('token');
 
+export const getProducts = createAsyncThunk('products', async () => {
+    const res = await productApi.getAllProduct();
+    const product = res.data;
+
+    if (token) {
+        const favArray = await productApi.getFavorites();
+
+        product.forEach(el => {
+            const favProduct = favArray.data.find(elem => elem.product === el.id);
+            if (favProduct) {
+                el.deleteId = favProduct.id;
+            }
+        });
+    }
+
+    return product;
+});
 export const addFavorite = createAsyncThunk('favorite',
     async (id) => {
         let res = await productApi.postFavorite(id)
@@ -90,7 +117,6 @@ export const getBasket = createAsyncThunk('getBasket',
 
 export const addBasket = createAsyncThunk('addBasket', async (id) => {
     const res = await productApi.addBasket(id)
-    console.log(res)
     return res.data
 })
 
