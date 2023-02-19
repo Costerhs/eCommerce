@@ -59,7 +59,7 @@ export const userApi = {
                     .then(() => {
                         setIsLoad(false)
                         navigate('/')
-                        window.location.reload
+                        window.location.reload()
                     })
             })
     },
