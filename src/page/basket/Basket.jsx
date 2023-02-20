@@ -49,7 +49,6 @@ const Basket = () => {
                         {products.length >= 1 ? <button onClick={deleteAll} className="basket__delete-all">Удалить все</button> :
                             <p>Товары в корзине отсутствуют</p>
                         }
-
                     </div>
                 </div>
             </div>

@@ -8,6 +8,8 @@ import { RxAvatar } from 'react-icons/rx'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { RxCross1 } from 'react-icons/rx'
+import { IoMdExit } from 'react-icons/io'
+
 const Header = () => {
     const token = localStorage.getItem('token')
     const location = useLocation().pathname
@@ -16,6 +18,9 @@ const Header = () => {
     useEffect(() => {
         setIsBurger(false)
     }, [location])
+    const logOut = () => {
+        localStorage.clear()
+    }
 
     return (
         <div className='head'>
@@ -38,6 +43,9 @@ const Header = () => {
                         </div>
                         <NavLink to={'/profile'}>
                             <RxAvatar className='head__icon-ava' />
+                        </NavLink>
+                        <NavLink to={'/auth'}>
+                            <IoMdExit onClick={logOut} className='head__icon-exit' />
                         </NavLink>
                     </> :
                         <NavLink to={'/auth'} className='head__login'>SignUp/SingIn</NavLink>

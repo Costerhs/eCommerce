@@ -14,7 +14,7 @@ const FavoritesPage = () => {
     }, [])
 
     return (
-        <div>
+        <div className='favorite'>
             <Products title={'Избранные товары'} products={favoriteProducts} />
         </div>
     )
