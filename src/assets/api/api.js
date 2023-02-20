@@ -7,6 +7,10 @@ const instance = axios.create({
 });
 let header = { Authorization: `Bearer ${localStorage.getItem("token")}` }
 
+
+
+
+
 export const userApi = {
     register(data, setIsLoad) {
         data.phone_number = "+" + data.phone_number
@@ -55,6 +59,7 @@ export const userApi = {
             })
             .then(el => {
                 setLocal('token', el.data.access)
+                setLocal('refresh', el.data.refresh)
                 this.getUser(data.username)
                     .then(() => {
                         setIsLoad(false)
@@ -109,3 +114,30 @@ export const productApi = {
         return instance.delete(`baskets/${id}/`, { headers: header })
     }
 }
+
+
+instance.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        if (error.response.status === 401) {
+            modal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Произошла ошибка! Пожалуйста попробуйте снова',
+                showConfirmButton: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    instance.post('token/refresh/', { "refresh": `${localStorage.getItem('refresh')}` })
+                        .then((el) => {
+                            setLocal('token', el.data.access)
+                            window.location.reload()
+                        })
+
+                }
+            })
+        }
+        return Promise.reject(error);
+    },
+);

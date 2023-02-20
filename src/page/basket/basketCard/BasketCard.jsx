@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './style.scss';
 import del from '../../../assets/img/delete.svg'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addBasket, deleteBasket, deletePack } from '../../../store/reducers/ActionCreator';
 
 
@@ -13,7 +13,6 @@ const BasketCard = ({ data, getProductOfBasket }) => {
     const addBaskets = async () => {
         await dispatch(addBasket(productsData.id))
         getProductOfBasket()
-        // console.log(productsData.id)
     }
     const delBasket = async () => {
         await dispatch(deleteBasket(data.ids[0]))

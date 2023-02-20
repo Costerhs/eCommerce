@@ -10,12 +10,10 @@ const Category = ({ setActiveCategory, activeCategory }) => {
     useEffect(() => {
         dispatch(getCategory())
     }, [])
-    // useEffect(() => {
-    //     console.log(category)
-    // }, [category])
+
     return (
         <div className='category'>
-            <h2>Категории</h2>
+            {/* <h2>Категории</h2> */}
             <div className="category__list">
                 {category.length > 0 && category.map((el, ind) => {
                     return <div key={ind} onClick={() => {

@@ -30,3 +30,16 @@
     }
     }
 }
+
+@media (max-width:576px) {
+    .profile {
+        .profile__info {
+            .container {
+                flex-direction: column;
+                .profile__img {
+                    width: 70%;
+                }
+            }
+        }
+    }
+}

@@ -3,12 +3,12 @@ import pr from '../../assets/localData/pr'
 import BasketCard from './basketCard/BasketCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getBasket } from '../../store/reducers/ActionCreator'
+import { deletePack, getBasket } from '../../store/reducers/ActionCreator'
 import Load from '../../component/load/Load'
 
 const Basket = () => {
     const dispatch = useDispatch()
-    const products = useSelector(el => el.productReducer.basketProducts)
+    const products = useSelector(el => Object.values(el.productReducer.basketProducts))
     const sum = useSelector(el => el.productReducer.sum)
     const load = useSelector(el => el.productReducer.loadBasket)
 
@@ -20,8 +20,20 @@ const Basket = () => {
         getProductOfBasket()
     }, [])
     useEffect(() => {
-        console.log(products, sum)
+        let red = []
+        products.map(el => {
+            red = red.concat(el.ids)
+        })
+        // console.log(red)
     }, [products])
+    const deleteAll = async () => {
+        let allIds = []
+        products.map(el => {
+            allIds = allIds.concat(el.ids)
+        })
+        await dispatch(deletePack(allIds))
+        getProductOfBasket()
+    }
     return (
         <div className='basket'>
             <div className="container">
@@ -30,9 +42,15 @@ const Basket = () => {
                     <p><span>В сумме:</span> {sum} сом</p>
                 </div>
                 <div className="basket__list">
-                    {Object.values(products).map((el, ind) => {
+                    {products.map((el, ind) => {
                         return <BasketCard getProductOfBasket={getProductOfBasket} key={ind} data={el} />
                     })}
+                    <div className="basket__delete-all-container">
+                        {products.length >= 1 ? <button onClick={deleteAll} className="basket__delete-all">Удалить все</button> :
+                            <p>Товары в корзине отсутствуют</p>
+                        }
+
+                    </div>
                 </div>
             </div>
             <Load isLoad={load} />

@@ -1,32 +1,8 @@
 import './style.scss'
-import { NavLink, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import navObj from '../../../assets/localData/headerData'
 
-const navObj = [
-    {
-        name: 'Главная',
-        location: '/',
-        private: false
-    },
-    {
-        name: 'О нас',
-        location: '/aboutUs/',
-        private: false
-    },
-    {
-        name: 'Товары',
-        location: '/products/',
-        private: false
-    },
-    {
-        name: 'Профиль',
-        location: '/profile/',
-        private: true
-    },
-]
-const Nav = ({ token }) => {
-    const location = useLocation().pathname
-
+const Nav = ({ token, location }) => {
     return (
         <div className="head__nav">
             <NavLink to={'/'} className='head__logo'>BuySell.kg</NavLink>

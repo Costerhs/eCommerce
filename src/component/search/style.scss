@@ -1,14 +1,12 @@
 .search {
-    // width: 330px;
     border-radius: 18px;
     box-shadow: 1px 2px 16px 3px rgba(21, 21, 22, 0.08);
-    // border: 1px solid green;
     overflow: hidden;
     height: 38px;
-    /*90 28*/
+    display: flex;
+    width: 300px;
     .search__inp {
         padding: 9px 10px 9px 10px;
-        // border: 1px solid;
         position: relative;
     }
     .search__img {
@@ -16,9 +14,5 @@
         height: 15px;
         margin-left: 10px;
         margin-top: 10px;
-    }
-    .search__label {
-        background: #DADCDC;
-        padding: 9px 24px;
     }
 }

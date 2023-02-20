@@ -33,7 +33,6 @@ const Card = ({ data, isDel }) => {
             <div className="card__btns">
                 {token && <><img src={data.deleteId ? favorite : favoriteEmpty}
                     alt="favorite"
-                    // className='card__favorite'
                     onClick={favoriteF} />
                     <SlBasket className='card__del' onClick={addBaskets} /></>}
 

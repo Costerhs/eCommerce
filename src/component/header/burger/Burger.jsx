@@ -1,14 +1,18 @@
+import { NavLink, useLocation } from 'react-router-dom'
+import navObj from '../../../assets/localData/headerData'
 import './style.scss'
 
-const Burger = () => {
+const Burger = ({ token, location }) => {
+    
+
     return (
         <div className='burger'>
             <h2>BuySell.kg</h2>
             <div className="burger__links">
-                <p className='burger__link burger__link-active'>Home</p>
-                <p className='burger__link'>About Us</p>
-                <p className='burger__link'>Favorite</p>
-                <p className='burger__link'>More</p>
+                {navObj.map((el, ind) => {
+                    if (!token && el.private) return
+                    return <NavLink  key={ind} to={el.location} className={`burger__link ${location == el.location && 'burger__link-active'}`}>{el.name}</NavLink>
+                })}
             </div>
         </div>
     )

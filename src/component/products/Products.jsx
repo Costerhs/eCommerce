@@ -10,7 +10,7 @@ const Products = ({ title, products }) => {
     const [partOfProduct, setPartOfProduct] = useState()
     const load = useSelector(el => el.productReducer.load)
     const [activeCategory, setActiveCategory] = useState(null)
-    const [searchText, setSearchText] = useState();
+    const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
         let arr = products.filter(el => el.category === activeCategory)
@@ -20,8 +20,9 @@ const Products = ({ title, products }) => {
 
     useEffect(() => {
         let arr = products.filter(el => {
-            return el.title.includes(searchText)
+            return el.title.toLowerCase().includes(searchText.toLowerCase())
         })
+
         setPartOfProduct(arr)
         setActiveCategory(null)
     }, [searchText])
